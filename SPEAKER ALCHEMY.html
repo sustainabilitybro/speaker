@@ -1,0 +1,1719 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Speaking Mastery System - FULLY FIXED</title>
+    <style>
+        :root {
+            --color-primary: #2180a6;
+            --color-primary-hover: #1d748a;
+            --color-primary-active: #1a6673;
+            --color-secondary: rgba(94, 82, 64, 0.12);
+            --color-background: #fcfcf9;
+            --color-surface: #ffffff;
+            --color-text: #134252;
+            --color-text-secondary: #626c71;
+            --color-border: rgba(94, 82, 64, 0.2);
+            --color-success: #208091;
+            --color-warning: #a84d2f;
+            --color-error: #c0152f;
+            --radius-base: 8px;
+            --radius-lg: 12px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+            --space-4: 4px;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+            --font-size-2xl: 20px;
+            --font-size-3xl: 24px;
+        }
+
+
+        [data-theme="dark"] {
+            --color-primary: #32b8c6;
+            --color-primary-hover: #2da4ae;
+            --color-primary-active: #289097;
+            --color-secondary: rgba(119, 124, 124, 0.15);
+            --color-background: #1f2121;
+            --color-surface: #262828;
+            --color-text: #f5f5f5;
+            --color-text-secondary: #a7a9a9;
+            --color-border: rgba(119, 124, 124, 0.3);
+        }
+
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-primary: #32b8c6;
+                --color-primary-hover: #2da4ae;
+                --color-primary-active: #289097;
+                --color-secondary: rgba(119, 124, 124, 0.15);
+                --color-background: #1f2121;
+                --color-surface: #262828;
+                --color-text: #f5f5f5;
+                --color-text-secondary: #a7a9a9;
+                --color-border: rgba(119, 124, 124, 0.3);
+            }
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.5;
+        }
+
+
+        .container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+
+        .sidebar {
+            width: 280px;
+            background-color: var(--color-surface);
+            border-right: 1px solid var(--color-border);
+            overflow-y: auto;
+            padding: var(--space-16);
+            box-shadow: var(--shadow-sm);
+        }
+
+
+        .sidebar h2 {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--space-20);
+            color: var(--color-text);
+        }
+
+
+        .nav-section {
+            margin-bottom: var(--space-24);
+        }
+
+
+        .nav-title {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            margin-bottom: var(--space-12);
+            letter-spacing: 0.5px;
+        }
+
+
+        .nav-item {
+            display: block;
+            padding: var(--space-12) var(--space-16);
+            margin-bottom: var(--space-8);
+            background: transparent;
+            border: none;
+            border-radius: var(--radius-base);
+            color: var(--color-text);
+            cursor: pointer;
+            font-size: var(--font-size-base);
+            transition: all 150ms;
+            text-align: left;
+            width: 100%;
+        }
+
+
+        .nav-item:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+        }
+
+
+        .nav-item.active {
+            background-color: var(--color-primary);
+            color: white;
+            font-weight: 500;
+        }
+
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+
+        .header {
+            background-color: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--space-16) var(--space-24);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+            gap: var(--space-16);
+        }
+
+
+        .header h1 {
+            font-size: var(--font-size-2xl);
+            color: var(--color-text);
+        }
+
+
+        .header-controls {
+            display: flex;
+            gap: var(--space-12);
+            align-items: center;
+        }
+
+
+        .search-box {
+            display: flex;
+            gap: var(--space-12);
+            flex: 1;
+            max-width: 400px;
+        }
+
+
+        .search-box input {
+            flex: 1;
+            padding: var(--space-8) var(--space-12);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-base);
+            background-color: var(--color-background);
+            color: var(--color-text);
+        }
+
+
+        .search-box input::placeholder {
+            color: var(--color-text-secondary);
+        }
+
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(33, 128, 166, 0.1);
+        }
+
+
+        .theme-toggle {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: var(--space-8) var(--space-12);
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 150ms;
+        }
+
+
+        .theme-toggle:hover {
+            background: var(--color-primary-hover);
+        }
+
+
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--space-24);
+        }
+
+
+        .view {
+            display: none;
+        }
+
+
+        .view.active {
+            display: block;
+        }
+
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-20);
+            margin-bottom: var(--space-24);
+        }
+
+
+        .card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-20);
+            cursor: pointer;
+            transition: all 200ms;
+            box-shadow: var(--shadow-sm);
+        }
+
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+            border-color: var(--color-primary);
+        }
+
+
+        .card h3 {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-8);
+            color: var(--color-text);
+        }
+
+
+        .card p {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-12);
+        }
+
+
+        .card-meta {
+            display: flex;
+            gap: var(--space-12);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+
+        .badge {
+            display: inline-block;
+            padding: var(--space-4) var(--space-8);
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            border-radius: 4px;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+        }
+
+
+        .badge.success {
+            background-color: rgba(32, 128, 145, 0.15);
+            color: var(--color-success);
+        }
+
+
+        .filter-bar {
+            display: flex;
+            gap: var(--space-12);
+            margin-bottom: var(--space-24);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+
+        .filter-group {
+            display: flex;
+            gap: var(--space-8);
+            align-items: center;
+        }
+
+
+        .filter-group label {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            color: var(--color-text-secondary);
+        }
+
+
+        .filter-select, .search-input {
+            padding: var(--space-8) var(--space-12);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            background-color: var(--color-surface);
+            color: var(--color-text);
+            font-size: var(--font-size-base);
+            cursor: pointer;
+        }
+
+
+        .filter-select:focus, .search-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+
+        .btn {
+            padding: var(--space-8) var(--space-16);
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            transition: all 150ms;
+        }
+
+
+        .btn:hover {
+            background-color: var(--color-primary-hover);
+        }
+
+
+        .btn-small {
+            padding: var(--space-4) var(--space-12);
+            font-size: var(--font-size-sm);
+        }
+
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-primary);
+            border: 1px solid var(--color-border);
+        }
+
+
+        .btn-secondary:hover {
+            background-color: var(--color-secondary);
+        }
+
+
+        .table-container {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+
+        thead {
+            background-color: var(--color-background);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+        }
+
+
+        th {
+            padding: var(--space-12) var(--space-16);
+            text-align: left;
+            font-weight: 600;
+            color: var(--color-text);
+            font-size: var(--font-size-sm);
+        }
+
+
+        td {
+            padding: var(--space-12) var(--space-16);
+            border-bottom: 1px solid var(--color-border);
+            font-size: var(--font-size-base);
+        }
+
+
+        tbody tr:hover {
+            background-color: var(--color-background);
+        }
+
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .modal.active {
+            display: flex;
+        }
+
+
+        .modal-content {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-24);
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-20);
+        }
+
+
+        .modal-header h2 {
+            font-size: var(--font-size-2xl);
+            color: var(--color-text);
+        }
+
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: var(--font-size-2xl);
+            cursor: pointer;
+            color: var(--color-text-secondary);
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-base);
+        }
+
+
+        .close-btn:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+        }
+
+
+        .section-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            margin-bottom: var(--space-20);
+            color: var(--color-text);
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: var(--space-12);
+        }
+
+
+        .stat-box {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+            color: white;
+            padding: var(--space-20);
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+
+
+        .stat-box-value {
+            font-size: var(--font-size-3xl);
+            font-weight: 600;
+            margin-bottom: var(--space-8);
+        }
+
+
+        .stat-box-label {
+            font-size: var(--font-size-base);
+            opacity: 0.9;
+        }
+
+
+        .expandable-section {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-16);
+            overflow: hidden;
+        }
+
+
+        .expandable-header {
+            padding: var(--space-16);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--color-background);
+            border-bottom: 1px solid var(--color-border);
+            transition: background-color 150ms;
+            user-select: none;
+        }
+
+
+        .expandable-header:hover {
+            background-color: var(--color-secondary);
+        }
+
+
+        .expandable-header h3 {
+            margin: 0;
+            font-size: var(--font-size-lg);
+            color: var(--color-text);
+        }
+
+
+        .expand-icon {
+            transition: transform 200ms;
+            color: var(--color-primary);
+            display: inline-block;
+        }
+
+
+        .expandable-section.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+
+        .expandable-content {
+            display: none;
+            padding: var(--space-16);
+            border-top: 1px solid var(--color-border);
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+        }
+
+
+        .expandable-section.expanded .expandable-content {
+            display: block;
+        }
+
+
+        .question-item {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
+            margin-bottom: var(--space-12);
+            cursor: pointer;
+            transition: all 150ms;
+        }
+
+
+        .question-item:hover {
+            border-color: var(--color-primary);
+            background-color: var(--color-background);
+        }
+
+
+        .question-number {
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: var(--space-8);
+            font-size: var(--font-size-sm);
+        }
+
+
+        .question-text {
+            color: var(--color-text);
+            margin-bottom: var(--space-8);
+            font-weight: 500;
+        }
+
+
+        .question-type {
+            display: inline-block;
+            padding: var(--space-4) var(--space-8);
+            background-color: var(--color-secondary);
+            color: var(--color-text-secondary);
+            border-radius: 3px;
+            font-size: var(--font-size-sm);
+        }
+
+
+        .load-more-btn {
+            width: 100%;
+            padding: var(--space-12);
+            text-align: center;
+            margin-top: var(--space-16);
+        }
+
+
+        .loading {
+            text-align: center;
+            padding: var(--space-32);
+            color: var(--color-text-secondary);
+        }
+
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--color-secondary);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+
+        .stats-row {
+            display: flex;
+            gap: var(--space-16);
+            margin-bottom: var(--space-16);
+            flex-wrap: wrap;
+        }
+
+
+        .stat-item {
+            flex: 1;
+            min-width: 150px;
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
+            text-align: center;
+        }
+
+
+        .stat-item-value {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: var(--space-8);
+        }
+
+
+        .stat-item-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+
+        .no-results {
+            text-align: center;
+            padding: var(--space-32);
+            color: var(--color-text-secondary);
+        }
+
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+
+            .sidebar {
+                width: 100%;
+                max-height: 40vh;
+                border-right: none;
+                border-bottom: 1px solid var(--color-border);
+                overflow-x: auto;
+                display: flex;
+                gap: var(--space-16);
+            }
+
+
+            .nav-section {
+                margin-bottom: 0;
+                min-width: 200px;
+            }
+
+
+            .content {
+                flex: 1;
+            }
+
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .header {
+                flex-direction: column;
+                gap: var(--space-12);
+            }
+
+
+            .search-box {
+                max-width: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <h2>🎤 PSM</h2>
+            
+            <div class="nav-section">
+                <div class="nav-title">Main</div>
+                <button class="nav-item active" data-view="dashboard">📊 Dashboard</button>
+                <button class="nav-item" data-view="modules">📚 16 Modules</button>
+                <button class="nav-item" data-view="questions">❓ 3,000+ Qs</button>
+                <button class="nav-item" data-view="templates">📋 27 Templates</button>
+                <button class="nav-item" data-view="frameworks">💡 15+ Frameworks</button>
+            </div>
+
+
+            <div class="nav-section">
+                <div class="nav-title">Management</div>
+                <button class="nav-item" data-view="rubrics">🏆 Rubrics</button>
+                <button class="nav-item" data-view="students">👥 Students</button>
+                <button class="nav-item" data-view="automation">⚙️ Automation</button>
+                <button class="nav-item" data-view="analytics">📈 Analytics</button>
+            </div>
+        </div>
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1 id="pageTitle">Dashboard</h1>
+                <div class="header-controls">
+                    <div class="search-box">
+                        <input type="text" id="globalSearch" placeholder="🔍 Search all content...">
+                    </div>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+                </div>
+            </div>
+
+
+            <!-- Content Area -->
+            <div class="content">
+
+
+                <!-- DASHBOARD -->
+                <div id="dashboard" class="view active">
+                    <div class="grid">
+                        <div class="stat-box">
+                            <div class="stat-box-value">16</div>
+                            <div class="stat-box-label">Modules</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-value">3,072</div>
+                            <div class="stat-box-label">Questions</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-value">27</div>
+                            <div class="stat-box-label">Templates</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-value">15+</div>
+                            <div class="stat-box-label">Frameworks</div>
+                        </div>
+                    </div>
+
+
+                    <h2 class="section-title">Quick Stats</h2>
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <div class="stat-item-value">128</div>
+                            <div class="stat-item-label">Videos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-item-value">8</div>
+                            <div class="stat-item-label">Weeks</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-item-value">65%</div>
+                            <div class="stat-item-label">Completion</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-item-value">$100k+</div>
+                            <div class="stat-item-label">Year 1 Revenue</div>
+                        </div>
+                    </div>
+
+
+                    <h2 class="section-title">4 Phases</h2>
+                    <div class="grid">
+                        <div class="card" onclick="navigateToModules()">
+                            <h3>🎓 Phase 1: Foundation</h3>
+                            <p>Modules 1-4 (Week 1-2)</p>
+                            <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">Build psychological foundation</p>
+                            <button class="btn btn-small">View Modules</button>
+                        </div>
+                        <div class="card" onclick="navigateToModules()">
+                            <h3>🚀 Phase 2: First Steps</h3>
+                            <p>Modules 5-8 (Week 3-4)</p>
+                            <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">Preparation & frameworks</p>
+                            <button class="btn btn-small">View Modules</button>
+                        </div>
+                        <div class="card" onclick="navigateToModules()">
+                            <h3>⚡ Phase 3: Energy</h3>
+                            <p>Modules 9-12 (Week 5-6)</p>
+                            <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">Stories, Q&A, endings</p>
+                            <button class="btn btn-small">View Modules</button>
+                        </div>
+                        <div class="card" onclick="navigateToModules()">
+                            <h3>✨ Phase 4: Polish</h3>
+                            <p>Modules 13-16 (Week 7-8)</p>
+                            <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">Movement, tips, voice</p>
+                            <button class="btn btn-small">View Modules</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- MODULES -->
+                <div id="modules" class="view">
+                    <h2 class="section-title">All 16 Modules</h2>
+                    <div class="filter-bar">
+                        <label style="font-size: var(--font-size-sm); font-weight: 500; color: var(--color-text-secondary);">Filter:</label>
+                        <select id="modulePhaseFilter" class="filter-select">
+                            <option value="">All Modules</option>
+                            <option value="Phase 1">Phase 1</option>
+                            <option value="Phase 2">Phase 2</option>
+                            <option value="Phase 3">Phase 3</option>
+                            <option value="Phase 4">Phase 4</option>
+                        </select>
+                    </div>
+                    <div id="modulesGrid" class="grid"></div>
+                </div>
+
+
+                <!-- QUESTIONS - 3,072 FULLY SEARCHABLE -->
+                <div id="questions" class="view">
+                    <h2 class="section-title">3,072 Assessment Questions</h2>
+                    
+                    <div class="filter-bar">
+                        <label style="font-size: var(--font-size-sm); font-weight: 500; color: var(--color-text-secondary);">Module:</label>
+                        <select id="questionModuleFilter" class="filter-select">
+                            <option value="">All Modules</option>
+                        </select>
+
+
+                        <label style="font-size: var(--font-size-sm); font-weight: 500; color: var(--color-text-secondary); margin-left: var(--space-16);">Type:</label>
+                        <select id="questionTypeFilter" class="filter-select">
+                            <option value="">All Types</option>
+                            <option value="Open-ended">Open-ended</option>
+                            <option value="Rating">Rating Scale</option>
+                            <option value="Multiple Choice">Multiple Choice</option>
+                            <option value="Reflection">Reflection</option>
+                            <option value="Scenario">Scenario</option>
+                            <option value="Application">Application</option>
+                        </select>
+                    </div>
+
+
+                    <input type="text" id="questionSearchInput" class="search-input" placeholder="🔍 Search questions..." style="width: 100%; margin-bottom: var(--space-16); padding: var(--space-12);">
+
+
+                    <div id="questionsContainer"></div>
+                    <div id="questionsLoadMore" class="load-more-btn"></div>
+                </div>
+
+
+                <!-- TEMPLATES - ALL CLICKABLE -->
+                <div id="templates" class="view">
+                    <h2 class="section-title">27 Notion Templates</h2>
+                    
+                    <div class="filter-bar">
+                        <label style="font-size: var(--font-size-sm); font-weight: 500; color: var(--color-text-secondary);">Category:</label>
+                        <select id="templateCategoryFilter" class="filter-select">
+                            <option value="">All (27)</option>
+                            <option value="Foundational">Foundational (4)</option>
+                            <option value="Design">Design (6)</option>
+                            <option value="Operations">Operations (5)</option>
+                            <option value="Storytelling">Storytelling (5)</option>
+                            <option value="Business">Business (7)</option>
+                        </select>
+                    </div>
+
+
+                    <div id="templatesGrid" class="grid"></div>
+                </div>
+
+
+                <!-- FRAMEWORKS - EXPANDABLE -->
+                <div id="frameworks" class="view">
+                    <h2 class="section-title">15+ Core Frameworks</h2>
+                    
+                    <input type="text" id="frameworkSearchInput" class="search-input" placeholder="🔍 Search frameworks..." style="width: 100%; margin-bottom: var(--space-16); padding: var(--space-12);">
+
+
+                    <div id="frameworksContainer"></div>
+                </div>
+
+
+                <!-- RUBRICS -->
+                <div id="rubrics" class="view">
+                    <h2 class="section-title">Capstone Rubrics</h2>
+                    
+                    <div class="grid">
+                        <div class="card" onclick="openRubricModal('capstone1')">
+                            <h3>🎯 Capstone 1</h3>
+                            <p>Week 4 - 5-minute segment</p>
+                            <span class="badge">35+ points to pass</span>
+                            <button class="btn btn-small" style="margin-top: var(--space-12);">View Rubric</button>
+                        </div>
+                        <div class="card" onclick="openRubricModal('capstone2')">
+                            <h3>🏆 Capstone 2</h3>
+                            <p>Week 8 - 10-minute talk</p>
+                            <span class="badge success">38+ points to graduate</span>
+                            <button class="btn btn-small" style="margin-top: var(--space-12);">View Rubric</button>
+                        </div>
+                    </div>
+
+
+                    <h2 class="section-title" style="margin-top: var(--space-32);">7 Scoring Criteria</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Criterion</th>
+                                    <th>7 Pts (Exceptional)</th>
+                                    <th>4 Pts (Developing)</th>
+                                    <th>1 Pt (Not Attempted)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Clarity</strong></td>
+                                    <td>Message crystal clear</td>
+                                    <td>Message unclear</td>
+                                    <td>No clear message</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Energy</strong></td>
+                                    <td>Magnetic presence</td>
+                                    <td>Uneven energy</td>
+                                    <td>No engagement</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Control</strong></td>
+                                    <td>Perfect mechanics</td>
+                                    <td>Limited variety</td>
+                                    <td>Chaotic</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Room Use</strong></td>
+                                    <td>Strategic positioning</td>
+                                    <td>Minimal movement</td>
+                                    <td>Not engaged</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Story</strong></td>
+                                    <td>Powerful VPG stories</td>
+                                    <td>Some stories</td>
+                                    <td>No stories</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Q&A</strong></td>
+                                    <td>Perfect frames</td>
+                                    <td>Limited frames</td>
+                                    <td>Complete failure</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Close/CTA</strong></td>
+                                    <td>Perfect closure</td>
+                                    <td>Weak closure</td>
+                                    <td>Abrupt ending</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <!-- STUDENTS -->
+                <div id="students" class="view">
+                    <h2 class="section-title">Student Management</h2>
+                    
+                    <div class="filter-bar">
+                        <label style="font-size: var(--font-size-sm); font-weight: 500; color: var(--color-text-secondary);">Status:</label>
+                        <select id="studentStatusFilter" class="filter-select">
+                            <option value="">All Students</option>
+                            <option value="Active">Active</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Paused">Paused</option>
+                        </select>
+                    </div>
+
+
+                    <div class="table-container">
+                        <table id="studentsTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Module</th>
+                                    <th>Status</th>
+                                    <th>Capstone 1</th>
+                                    <th>Capstone 2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-status="Active">
+                                    <td>Alex Johnson</td>
+                                    <td>8/16</td>
+                                    <td><span class="badge success">Active</span></td>
+                                    <td><span class="badge success">36/49</span></td>
+                                    <td>—</td>
+                                </tr>
+                                <tr data-status="Completed">
+                                    <td>Sarah Chen</td>
+                                    <td>16/16</td>
+                                    <td><span class="badge success">Completed</span></td>
+                                    <td><span class="badge success">42/49</span></td>
+                                    <td><span class="badge success">41/49</span></td>
+                                </tr>
+                                <tr data-status="Paused">
+                                    <td>Marcus Rodriguez</td>
+                                    <td>4/16</td>
+                                    <td><span class="badge">Paused</span></td>
+                                    <td>—</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr data-status="Active">
+                                    <td>Emily Watson</td>
+                                    <td>12/16</td>
+                                    <td><span class="badge success">Active</span></td>
+                                    <td><span class="badge success">39/49</span></td>
+                                    <td>In Progress</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <!-- AUTOMATION -->
+                <div id="automation" class="view">
+                    <h2 class="section-title">10 Automation Workflows</h2>
+                    <div id="automationContainer"></div>
+                </div>
+
+
+                <!-- ANALYTICS -->
+                <div id="analytics" class="view">
+                    <h2 class="section-title">Analytics & KPIs</h2>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>📈 Completion Rate</h3>
+                            <p><strong>Target: 65%</strong></p>
+                            <p>% of students finishing program</p>
+                        </div>
+                        <div class="card">
+                            <h3>🎯 Confidence Gain</h3>
+                            <p><strong>Target: +4 points</strong></p>
+                            <p>Average improvement 1-10 scale</p>
+                        </div>
+                        <div class="card">
+                            <h3>⭐ NPS Score</h3>
+                            <p><strong>Target: 50+</strong></p>
+                            <p>Net Promoter Score</p>
+                        </div>
+                        <div class="card">
+                            <h3>📉 Dropout Rate</h3>
+                            <p><strong>Target: <25% by Module 4</strong></p>
+                            <p>Students leaving early</p>
+                        </div>
+                        <div class="card">
+                            <h3>⏱️ Time to Completion</h3>
+                            <p><strong>Target: 16-20 weeks</strong></p>
+                            <p>Average weeks to graduate</p>
+                        </div>
+                        <div class="card">
+                            <h3>💰 Year 1 Revenue</h3>
+                            <p><strong>Projected: $100k-$160k</strong></p>
+                            <p>From 200 students + 5 coaching</p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Details</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+
+    <script>
+        // ===== DATA GENERATION =====
+        const modules = Array.from({length: 16}, (_, i) => ({
+            id: i + 1,
+            title: [
+                "How to Get the Most Out of This Program",
+                "Psych Power (Reframe Nerves)",
+                "Critiquing Yourself and Others",
+                "Different Public Speaking Formats",
+                "Preparation",
+                "Warming Up",
+                "Beginning and Introductions",
+                "Creating a Framework",
+                "Effective Breakout Activities",
+                "Developing Stories & Mini-Stories",
+                "Navigating Questions and Answers",
+                "Executing a Proper Ending Sequence",
+                "Working the Room",
+                "Tips and Tricks",
+                "Never Evers",
+                "Voice and Tonality"
+            ][i],
+            phase: i < 4 ? "Phase 1" : i < 8 ? "Phase 2" : i < 12 ? "Phase 3" : "Phase 4",
+            videos: 8
+        }));
+
+
+        const templates = [
+            { name: "Event Mission Pack", category: "Foundational" },
+            { name: "Self-Review & Coaching Loop", category: "Foundational" },
+            { name: "10-Minute Warmup Flow", category: "Foundational" },
+            { name: "Backstage Go Bag", category: "Foundational" },
+            { name: "Slide Rules", category: "Design" },
+            { name: "Hook Bank", category: "Design" },
+            { name: "VPG Story Spine", category: "Design" },
+            { name: "Power Punch Lab", category: "Design" },
+            { name: "Voice & Pause Ladder", category: "Design" },
+            { name: "Format Adaptation", category: "Design" },
+            { name: "AV Armor", category: "Operations" },
+            { name: "Stage Map & Room Scan", category: "Operations" },
+            { name: "Run-of-Show Cue Sheet", category: "Operations" },
+            { name: "Mic Mastery", category: "Operations" },
+            { name: "Contact & QR Template", category: "Operations" },
+            { name: "Story Bank", category: "Storytelling" },
+            { name: "Q&A Control Stack", category: "Storytelling" },
+            { name: "Heat Handler", category: "Storytelling" },
+            { name: "Post-Event Debrief", category: "Storytelling" },
+            { name: "Repurpose Factory", category: "Storytelling" },
+            { name: "Stage Pipeline Planner", category: "Business" },
+            { name: "Investor Pitch Stack", category: "Business" },
+            { name: "Capstone Rubric Card", category: "Business" },
+            { name: "Never Evers Playbook", category: "Business" },
+            { name: "Accessibility Preferences", category: "Business" },
+            { name: "Media Consent", category: "Business" },
+            { name: "Travel & Logistics", category: "Business" }
+        ];
+
+
+        const frameworks = [
+            { name: "First 2 Minutes Framework", desc: "Pause → Eye contact → Grabber → Set tone → Structure" },
+            { name: "3-Part Structure", desc: "Problem → Solution → Action" },
+            { name: "MPES Framework", desc: "Mental, Physical, Emotional, Spiritual alignment" },
+            { name: "VPG Framework", desc: "Vision → Pain → Gap → Solution" },
+            { name: "Emotional Roadmap", desc: "Heart → Head → Heart → Head → Hand → Voice" },
+            { name: "Room Ownership", desc: "Shift from Away Team to Home Team energy" },
+            { name: "ROI Principle", desc: "100 people × 1 hour = 100 hours of impact" },
+            { name: "Reframe Anxiety", desc: "Physical symptoms identical, mental shift required" },
+            { name: "Agreement Frame Ladder", desc: "'Can we agree...?' before answering" },
+            { name: "Plant-and-Preach", desc: "Plant → Deliver → Move positioning" },
+            { name: "Room Quarters", desc: "4 quadrants with eye contact rotation" },
+            { name: "Rocking Chair Test", desc: "'At 80, will I regret this?'" },
+            { name: "Sway Then Stay", desc: "Acknowledge pushback → Hold position" },
+            { name: "Pattern Interrupt", desc: "Break monotony with surprise/story/activity" },
+            { name: "10 Hook Types", desc: "Question, statement, story, surprise, stat, challenge, paradox, reference, analogy, joke" }
+        ];
+
+
+        const automations = [
+            { name: "Enrollment → Onboarding", desc: "Create Postgres record, Notion profile, send welcome email with credentials and Week 1 materials" },
+            { name: "Weekly Lesson Drip", desc: "Monday 6am EST, send module video links + downloadable resources + quiz activation" },
+            { name: "Assignment Submission", desc: "Pull video from student portal, run AI rubric scoring, send feedback within 48hrs" },
+            { name: "Weekly Coaching Report", desc: "Sunday 10pm, calculate completion %, confidence scores, flag at-risk students" },
+            { name: "Capstone Alert", desc: "24hrs before deadline, send SMS + email reminder with submission link" },
+            { name: "Module Unlock", desc: "Score ≥35/49 on module assessment auto-unlocks next module materials" },
+            { name: "Graduation Trigger", desc: "Capstone 2 score ≥38/49, send certificate + LinkedIn badge + alumni network invite" },
+            { name: "Repurposing Factory", desc: "Extract 5 clips from each talk, generate blog post, create 10 social posts" },
+            { name: "Dropout Prediction", desc: "Daily scan: >7 days inactive + <50% completion = intervention email from coach" },
+            { name: "Referral Tracking", desc: "Track referrer via unique link, award $50 credit on successful enrollment" }
+        ];
+
+
+        // Generate 3,072 questions (24 per video × 128 videos)
+        function generateAllQuestions() {
+            const questions = [];
+            const types = ['Open-ended', 'Rating', 'Multiple Choice', 'Reflection', 'Scenario', 'Application'];
+            const questionBank = {
+                'Open-ended': [
+                    'How will you apply this technique in your next presentation?',
+                    'What was the most valuable insight from this video?',
+                    'How would you teach this concept to a colleague?',
+                    'What obstacles might you face implementing this?',
+                    'How does this relate to your current speaking style?',
+                    'Describe a scenario where this would be most effective',
+                    'What questions remain unanswered for you?',
+                    'How could you adapt this for a virtual audience?'
+                ],
+                'Rating': [
+                    'Rate your current confidence with this skill (1-10)',
+                    'How relevant is this technique to your goals? (1-10)',
+                    'How clear was the explanation? (1-10)',
+                    'Likelihood you will practice this? (1-10)',
+                    'Video production quality rating (1-10)',
+                    'How challenging will this be to implement? (1-10)'
+                ],
+                'Multiple Choice': [
+                    'Which framework best applies here? (A) VPG (B) MPES (C) 3-Part (D) Agreement Frame',
+                    'What is the primary benefit of this technique?',
+                    'When should you use this approach?',
+                    'Which is NOT a recommended practice?',
+                    'How does this relate to room ownership?',
+                    'What is the first step in this process?'
+                ],
+                'Reflection': [
+                    'I will practice this for ___ minutes this week',
+                    'I commit to using this technique when ___',
+                    'My biggest insight from this lesson is...',
+                    'The habit I will change based on this is...',
+                    'I will measure my success by...',
+                    'One thing I will do differently tomorrow is...'
+                ],
+                'Scenario': [
+                    'You notice the audience checking phones. Apply this framework to re-engage them.',
+                    'A hostile question derails your talk. Use this technique to respond.',
+                    'Technical difficulties delay your start by 10 minutes. How do you adapt?',
+                    'You have 5 minutes less than planned. What do you cut?',
+                    'An audience member disagrees publicly. How do you handle it?',
+                    'Your opening joke falls flat. What do you do next?'
+                ],
+                'Application': [
+                    'Write 3 hooks for your signature talk using this framework',
+                    'Design a 2-minute story using the VPG structure',
+                    'Create a room map for your next presentation venue',
+                    'List 5 ways to apply this in your industry',
+                    'Develop a warmup routine incorporating this element',
+                    'Script your closing using this technique'
+                ]
+            };
+
+
+            let id = 1;
+            for (let mod = 1; mod <= 16; mod++) {
+                for (let vid = 1; vid <= 8; vid++) {
+                    for (let qn = 1; qn <= 24; qn++) {
+                        const typeIdx = qn % types.length;
+                        const type = types[typeIdx];
+                        const bank = questionBank[type];
+                        const text = bank[(mod + vid + qn) % bank.length];
+
+
+                        questions.push({
+                            id,
+                            moduleId: mod,
+                            videoId: vid,
+                            questionNum: qn,
+                            type,
+                            text,
+                            moduleTitle: modules[mod - 1].title
+                        });
+                        id++;
+                    }
+                }
+            }
+            return questions;
+        }
+
+
+        const allQuestions = generateAllQuestions();
+        let questionsDisplayed = 50;
+
+
+        // ===== STATE MANAGEMENT =====
+        let currentView = 'dashboard';
+
+
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+            localStorage.setItem('theme', newTheme);
+        });
+
+
+        // Initialize theme from localStorage or system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.textContent = '☀️';
+        }
+
+
+        // ===== MODAL MANAGEMENT =====
+        const modal = document.getElementById('detailModal');
+        const closeBtn = document.querySelector('.close-btn');
+
+
+        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.remove('active');
+        });
+
+
+        function openModal(title, content) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalBody').innerHTML = content;
+            modal.classList.add('active');
+        }
+
+
+        function openRubricModal(type) {
+            if (type === 'capstone1') {
+                openModal('Capstone 1 Rubric', 
+                    '<p><strong>Deliverable:</strong> 5-minute signature segment</p>' +
+                    '<p><strong>Due:</strong> End of Week 4</p>' +
+                    '<p><strong>Format:</strong> Recorded or live presentation</p>' +
+                    '<p><strong>Scoring:</strong> 7 criteria × 7 points = 49 total</p>' +
+                    '<p><strong>Pass Threshold:</strong> 35/49 (71%)</p>' +
+                    '<p><strong>Merit:</strong> 43+/49 (87%)</p>' +
+                    '<p>This capstone assesses your foundational skills and preparation techniques.</p>'
+                );
+            } else {
+                openModal('Capstone 2 Rubric',
+                    '<p><strong>Deliverable:</strong> 10-minute full talk with Q&A</p>' +
+                    '<p><strong>Due:</strong> End of Week 8</p>' +
+                    '<p><strong>Format:</strong> Live presentation to audience</p>' +
+                    '<p><strong>Scoring:</strong> 7 criteria × 7 points = 49 total</p>' +
+                    '<p><strong>Graduate Threshold:</strong> 38/49 (77%)</p>' +
+                    '<p><strong>Merit:</strong> 45+/49 (92%)</p>' +
+                    '<p>This capstone demonstrates mastery across all program modules.</p>'
+                );
+            }
+        }
+
+
+        // ===== NAVIGATION =====
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                switchView(e.target.dataset.view);
+            });
+        });
+
+
+        function switchView(viewName) {
+            currentView = viewName;
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(viewName).classList.add('active');
+            
+            const titles = {
+                dashboard: '📊 Dashboard',
+                modules: '📚 16 Modules',
+                questions: '❓ 3,072 Questions',
+                templates: '📋 27 Templates',
+                frameworks: '💡 15+ Frameworks',
+                rubrics: '🏆 Rubrics',
+                students: '👥 Students',
+                automation: '⚙️ 10 Automations',
+                analytics: '📈 Analytics'
+            };
+            document.getElementById('pageTitle').textContent = titles[viewName];
+
+
+            // Load content when switching views
+            if (viewName === 'modules') loadModules();
+            if (viewName === 'questions') loadQuestions();
+            if (viewName === 'templates') loadTemplates();
+            if (viewName === 'frameworks') loadFrameworks();
+            if (viewName === 'automation') loadAutomation();
+        }
+
+
+        function navigateToModules() {
+            document.querySelector('[data-view="modules"]').click();
+        }
+
+
+        // ===== MODULES =====
+        function loadModules() {
+            const container = document.getElementById('modulesGrid');
+            const filter = document.getElementById('modulePhaseFilter').value;
+            const filtered = filter ? modules.filter(m => m.phase === filter) : modules;
+
+
+            container.innerHTML = filtered.map(m => `
+                <div class="card" onclick="openModal('Module ${m.id}: ${m.title}', '<p><strong>Phase:</strong> ${m.phase}</p><p><strong>Videos:</strong> ${m.videos}</p><p><strong>Questions:</strong> 192 (24 per video)</p><p><strong>Duration:</strong> ~2-3 hours</p>')">
+                    <h3>Module ${m.id}</h3>
+                    <p>${m.title}</p>
+                    <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">${m.phase}</p>
+                    <div class="card-meta">
+                        <span>📺 ${m.videos} videos</span>
+                        <span>🎯 192 questions</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+
+        document.getElementById('modulePhaseFilter').addEventListener('change', loadModules);
+
+
+        // ===== QUESTIONS =====
+        function loadQuestions() {
+            // Populate module filter dropdown FIRST
+            const moduleSelect = document.getElementById('questionModuleFilter');
+            if (!moduleSelect.dataset.initialized) {
+                modules.forEach(m => {
+                    const opt = document.createElement('option');
+                    opt.value = m.id;
+                    opt.textContent = `Module ${m.id}: ${m.title}`;
+                    moduleSelect.appendChild(opt);
+                });
+                moduleSelect.dataset.initialized = 'true';
+            }
+
+
+            // Then render questions
+            renderQuestions();
+        }
+
+
+        function renderQuestions() {
+            const moduleFilter = document.getElementById('questionModuleFilter').value;
+            const typeFilter = document.getElementById('questionTypeFilter').value;
+            const search = document.getElementById('questionSearchInput').value.toLowerCase();
+
+
+            let filtered = allQuestions;
+            if (moduleFilter) filtered = filtered.filter(q => q.moduleId == moduleFilter);
+            if (typeFilter) filtered = filtered.filter(q => q.type === typeFilter);
+            if (search) filtered = filtered.filter(q => 
+                q.text.toLowerCase().includes(search) || 
+                q.moduleTitle.toLowerCase().includes(search)
+            );
+
+
+            const container = document.getElementById('questionsContainer');
+            const toShow = filtered.slice(0, questionsDisplayed);
+
+
+            if (toShow.length === 0) {
+                container.innerHTML = '<div class="no-results">No questions match your filters.</div>';
+            } else {
+                container.innerHTML = toShow.map(q => `
+                    <div class="question-item" onclick="openModal('Question ${q.id}', '<p><strong>Module:</strong> ${q.moduleTitle}</p><p><strong>Video:</strong> ${q.videoId}/8</p><p><strong>Type:</strong> ${q.type}</p><p><strong>Question ${q.questionNum}:</strong></p><p style=\\'margin-top: 12px; font-size: 16px;\\'>${q.text}</p>')">
+                        <div class="question-number">Mod${q.moduleId} • Video ${q.videoId} • Q${q.questionNum}</div>
+                        <div class="question-text">${q.text}</div>
+                        <span class="question-type">${q.type}</span>
+                    </div>
+                `).join('');
+            }
+
+
+            // Load more button
+            const loadMoreDiv = document.getElementById('questionsLoadMore');
+            if (filtered.length > questionsDisplayed) {
+                loadMoreDiv.innerHTML = `<button class="btn" onclick="loadMoreQuestions()">Load More (${filtered.length - questionsDisplayed} remaining)</button>`;
+            } else {
+                loadMoreDiv.innerHTML = '';
+            }
+        }
+
+
+        function loadMoreQuestions() {
+            questionsDisplayed += 50;
+            renderQuestions();
+        }
+
+
+        // Event listeners for question filters
+        document.getElementById('questionModuleFilter').addEventListener('change', () => {
+            questionsDisplayed = 50;
+            renderQuestions();
+        });
+        document.getElementById('questionTypeFilter').addEventListener('change', () => {
+            questionsDisplayed = 50;
+            renderQuestions();
+        });
+        document.getElementById('questionSearchInput').addEventListener('input', () => {
+            questionsDisplayed = 50;
+            renderQuestions();
+        });
+
+
+        // ===== TEMPLATES =====
+        function loadTemplates() {
+            const container = document.getElementById('templatesGrid');
+            const filter = document.getElementById('templateCategoryFilter').value;
+            const filtered = filter ? templates.filter(t => t.category === filter) : templates;
+
+
+            container.innerHTML = filtered.map((t, idx) => `
+                <div class="card" onclick="openModal('${t.name}', '<p><strong>Category:</strong> ${t.category}</p><p>Professional Notion template for managing ${t.category.toLowerCase()} aspects of your public speaking program.</p><p style=\\'margin-top: 16px;\\'><strong>Includes:</strong></p><ul style=\\'margin-left: 20px; margin-top: 8px;\\'><li>Pre-built database structure</li><li>Custom views and filters</li><li>Step-by-step instructions</li><li>Example entries</li></ul>')">
+                    <h3>${idx + 1}. ${t.name}</h3>
+                    <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">${t.category}</p>
+                    <div class="card-meta">
+                        <span>🔗 Notion Template</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+
+        document.getElementById('templateCategoryFilter').addEventListener('change', loadTemplates);
+
+
+        // ===== FRAMEWORKS =====
+        function loadFrameworks() {
+            renderFrameworks();
+        }
+
+
+        function renderFrameworks() {
+            const search = document.getElementById('frameworkSearchInput').value.toLowerCase();
+            const filtered = search ? frameworks.filter(f => 
+                f.name.toLowerCase().includes(search) || 
+                f.desc.toLowerCase().includes(search)
+            ) : frameworks;
+
+
+            const container = document.getElementById('frameworksContainer');
+            
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="no-results">No frameworks match your search.</div>';
+            } else {
+                container.innerHTML = filtered.map((f, idx) => `
+                    <div class="expandable-section" data-framework="${idx}">
+                        <div class="expandable-header">
+                            <h3>${idx + 1}. ${f.name}</h3>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="expandable-content">
+                            <p>${f.desc}</p>
+                            <button class="btn btn-small" style="margin-top: var(--space-12);" onclick="event.stopPropagation(); openModal('${f.name}', '<p>${f.desc}</p><p style=\\'margin-top: 16px;\\'><strong>Application:</strong> This framework is taught in detail across multiple modules with practical exercises and real-world examples.</p>')">Learn More</button>
+                        </div>
+                    </div>
+                `).join('');
+
+
+                // Add click handlers to expandable headers
+                document.querySelectorAll('.expandable-header').forEach(header => {
+                    header.addEventListener('click', function() {
+                        this.parentElement.classList.toggle('expanded');
+                    });
+                });
+            }
+        }
+
+
+        document.getElementById('frameworkSearchInput').addEventListener('input', renderFrameworks);
+
+
+        // ===== AUTOMATION =====
+        function loadAutomation() {
+            const container = document.getElementById('automationContainer');
+            container.innerHTML = automations.map((a, idx) => `
+                <div class="expandable-section" data-automation="${idx}">
+                    <div class="expandable-header">
+                        <h3>${idx + 1}. ${a.name}</h3>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="expandable-content">
+                        <p>${a.desc}</p>
+                        <button class="btn btn-small" style="margin-top: var(--space-12);" onclick="event.stopPropagation(); alert('Configuration panel coming soon!')">Configure</button>
+                    </div>
+                </div>
+            `).join('');
+
+
+            // Add click handlers
+            document.querySelectorAll('#automationContainer .expandable-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    this.parentElement.classList.toggle('expanded');
+                });
+            });
+        }
+
+
+        // ===== STUDENTS FILTER =====
+        document.getElementById('studentStatusFilter').addEventListener('change', (e) => {
+            const status = e.target.value;
+            const rows = document.querySelectorAll('#studentsTable tbody tr');
+            
+            rows.forEach(row => {
+                if (!status || row.dataset.status === status) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+
+        // ===== GLOBAL SEARCH =====
+        document.getElementById('globalSearch').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            if (query.length < 2) return;
+
+
+            const moduleMatches = modules.filter(m => m.title.toLowerCase().includes(query));
+            const templateMatches = templates.filter(t => t.name.toLowerCase().includes(query));
+            const frameworkMatches = frameworks.filter(f => 
+                f.name.toLowerCase().includes(query) || 
+                f.desc.toLowerCase().includes(query)
+            );
+
+
+            let results = '<h3>Search Results for "' + query + '"</h3>';
+            
+            if (moduleMatches.length > 0) {
+                results += '<h4 style="margin-top: 20px; color: var(--color-primary);">Modules (' + moduleMatches.length + ')</h4>';
+                results += moduleMatches.map(m => 
+                    `<p style="margin: 8px 0; cursor: pointer;" onclick="modal.classList.remove('active'); document.querySelector('[data-view=\\'modules\\']').click();">📚 Module ${m.id}: ${m.title}</p>`
+                ).join('');
+            }
+            
+            if (templateMatches.length > 0) {
+                results += '<h4 style="margin-top: 20px; color: var(--color-primary);">Templates (' + templateMatches.length + ')</h4>';
+                results += templateMatches.map(t => 
+                    `<p style="margin: 8px 0; cursor: pointer;" onclick="modal.classList.remove('active'); document.querySelector('[data-view=\\'templates\\']').click();">📋 ${t.name}</p>`
+                ).join('');
+            }
+            
+            if (frameworkMatches.length > 0) {
+                results += '<h4 style="margin-top: 20px; color: var(--color-primary);">Frameworks (' + frameworkMatches.length + ')</h4>';
+                results += frameworkMatches.map(f => 
+                    `<p style="margin: 8px 0; cursor: pointer;" onclick="modal.classList.remove('active'); document.querySelector('[data-view=\\'frameworks\\']').click();">💡 ${f.name}</p>`
+                ).join('');
+            }
+
+
+            if (!moduleMatches.length && !templateMatches.length && !frameworkMatches.length) {
+                results += '<p style="margin-top: 20px; color: var(--color-text-secondary);">No results found. Try different keywords.</p>';
+            }
+
+
+            openModal('Global Search', results);
+        });
+
+
+        // ===== INITIALIZE ON LOAD =====
+        document.addEventListener('DOMContentLoaded', () => {
+            loadModules();
+            loadTemplates();
+            loadFrameworks();
+            loadAutomation();
+        });
+    </script>
+</body>
+</html>
